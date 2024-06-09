@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const factureSchema = Schema({
     nofacture:{
-        type:Number,
+        type:String,
         required:true
     },
     adresse:{

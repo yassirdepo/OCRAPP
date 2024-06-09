@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const factureRoutes = require('./routes/factures')
 
 
+
 //express app
 const app = express()
 
@@ -17,7 +18,7 @@ app.use((req,res,next)=>{
 })
 
 //routes
-app.use('/api/factures',factureRoutes)
+app.use('/api',factureRoutes)
 
 
 //connect to db

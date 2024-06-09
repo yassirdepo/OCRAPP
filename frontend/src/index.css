@@ -1,3 +1,5 @@
+
+
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
@@ -27,68 +29,112 @@ header a {
   text-decoration: none;
 }
 .pages{
-  max-width: 1000px;
+  max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
 }
 
-.input-wrapper{
-  position:relative;
+/* homepage */
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
 }
-
-.input-wrapper label{
-  display: inline-block;
-  padding: 8px 12px;
-  cursor: pointer;
+.facture-details {
+  background: #fff;
   border-radius: 4px;
-  background: black;
-  color: white;
-  font-size: 15px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
-
-
-.input-wrapper input[type="file"]{
+.facture-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.facture-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.facture-details span {
   position: absolute;
-  left: 1px;
-  top: 9px;
-  z-index: -1;
-  font-size: 15px;
-  color: #1a1a1a;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
 }
 
-.result{
-  margin-top: 4rem;
-  display:grid;
+/* new workout form */
+label, input {
+  display: block;
+}
+input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+input.error {
+  border: 1px solid var(--error);
+}
+
+
+#upload {
+  display: none;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 20px; 
+  background-color: #1aac83;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #149e6f;
+}
+
+.box-image img {
+  max-width: 100%;
+  max-height: 500px; /* Increase the maximum height of the image */
+}
+
+
+nav {
+  display: flex;
   align-items: center;
-  justify-content: center;
 }
-
-.result .box-image{
-  background: grey;
-  height: 100%;
-  padding: 1rem;
-}
-
-.result .box-p{
-  background: lightgray;
-  height: 100%;
-  padding: 1rem;
-}
-
-
-.result img{
-  width:100%;
-  height:100%;
-  object-fit: contain;
-}
-
-.result p {
-  line-height: 1.5rem;
-  font-size: 1rem;
-}
-
-@media (min-width: 1000px) {
-  .result {
-    grid-template-columns: 1fr 1fr;
-  }
+nav a {
+  margin-left: 21px;
 }
