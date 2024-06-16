@@ -8,7 +8,7 @@ const FactureDetails = ({ facture }) => {
 
   const { dispatch } = useFacturesContext()
   const handleClick = async()=>{
-    const response = await fetch('/api/Factures/'+facture._id,{
+    const response = await fetch('/api/factures/'+facture._id,{
       method: 'DELETE'
     })
     const json = await response.json()
@@ -23,11 +23,11 @@ const FactureDetails = ({ facture }) => {
 
     return (
       <div className="facture-details">
-        <h4>No Facture : {facture.nofacture}</h4>
-        <p><strong>Adresse: </strong>{facture.adresse}</p>
+        <h4>N° Compte : {facture.nocompte}</h4>
+        <p><strong>Email: </strong>{facture.email}</p>
         <p><strong>Montant (DH): </strong>{facture.montant}</p>
         <p><strong>Date: </strong>{formattedDate}</p>
-        <p>{formatDistanceToNow(new Date(facture.createdAt),{addSuffix: true})}</p>
+        <p>Added {formatDistanceToNow(new Date(facture.createdAt),{addSuffix: true})}</p>
         <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
       </div>
     )

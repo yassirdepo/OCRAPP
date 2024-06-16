@@ -23,7 +23,7 @@ export const facturesReducer = (state, action) => {
 
 export const FacturesContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(facturesReducer, { 
-    factures: null
+    factures: []
   })
   
   return (

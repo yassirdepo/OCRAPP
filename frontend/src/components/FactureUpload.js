@@ -22,7 +22,7 @@ const FactureUpload = ({ setTextResult })=>{
         if(selectedImage){
             const formData = new FormData();
         formData.append('file', selectedImage);
-        axios.post('http://localhost:4000/api/upload',formData)
+        axios.post('http://localhost:4000/api/factures/upload',formData)
             .catch(error=>console.log(error))
         }
     },[selectedImage])

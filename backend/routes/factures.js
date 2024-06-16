@@ -15,10 +15,10 @@ const router = express.Router()
 router.use(cors())
 
 //GET all factures
-router.get('/Factures',getFactures)
+router.get('/',getFactures)
 
 //GET a single facture
-router.get('/Factures/:id',getFacture)
+router.get('/:id',getFacture)
 
 
 //UPLOAD a new one
@@ -31,11 +31,11 @@ router.post('/',createFacture)
 
 
 //DELETE a new facture
-router.delete('/Factures/:id',deleteFacture)
+router.delete('/:id',deleteFacture)
 
 
 //UPDATE a facture
-router.patch('/Factures/:id',updateFacture)
+router.patch('/:id',updateFacture)
 
 
 module.exports = router

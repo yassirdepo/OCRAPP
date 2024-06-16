@@ -5,8 +5,8 @@ import { format,parse } from "date-fns";
 
 const FactureForm = (props) => {
   const { dispatch } = useFacturesContext()
-  const [nofacture, setnofacture] = useState('')
-  const [adresse, setadresse] = useState('')
+  const [nocompte, setnocompte] = useState('')
+  const [email, setemail] = useState('')
   const [montant, setmontant] = useState('')
   const [date, setdate] = useState('')
   const [error, setError] = useState(null)
@@ -16,9 +16,9 @@ const FactureForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const facture = {nofacture, adresse, montant, date}
+    const facture = {nocompte, email, montant, date}
     
-    const response = await fetch('/api', {
+    const response = await fetch('/api/factures', {
       method: 'POST',
       body: JSON.stringify(facture),
       headers: {
@@ -34,12 +34,12 @@ const FactureForm = (props) => {
     if (response.ok) {
       setEmptyFields([])
       setError(null)
-      setnofacture('')
-      setadresse('')
+      setnocompte('')
+      setemail('')
       setmontant('')
       setdate('')
+      navigate("/")
       dispatch({type: 'CREATE_FACTURE', payload: json})
-      navigate("/Factures")
     }
 
     
@@ -52,22 +52,22 @@ const FactureForm = (props) => {
 
   useEffect(() => {
 
-    const regexnofacture = /Numéro de facture : ([a-zA-Z0-9]+)/;
-    const regexadresse = /Adresse : ([a-zA-Z]+)/;
-    const regexmontant = /Montant : ([0-9]+)/;
-    const regexdate = /Date : (\d{2}\/\d{2}\/\d{4})/;
+    const regexnocompte = /(?:N° Compte: |Numéro d'appel : )([a-zA-Z0-9]+)/;
+    const regexemail = /(?:Email: |Courrier électronique : )([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/i;
+    const regexmontant = /(?:Montant Total: |Total )([0-9]+(?:\.[0-9]+)?)/;
+    const regexdate = /(?:Date Paiement : |Date de paiement : )(\d{2}\/\d{2}\/\d{4})/;
 
-    const matchnofacture = text.match(regexnofacture);
-    const matchadresse = text.match(regexadresse);
+    const matchnocompte = text.match(regexnocompte);
+    const matchemail = text.match(regexemail);
     const matchmontant = text.match(regexmontant);
     const matchdate = text.match(regexdate);
 
-    if (matchnofacture) {
-        setnofacture(matchnofacture[1]);
+    if (matchnocompte) {
+        setnocompte(matchnocompte[1]);
     }
 
-    if (matchadresse) {
-        setadresse(matchadresse[1]);
+    if (matchemail) {
+        setemail(matchemail[1]);
     }
 
     if (matchmontant) {
@@ -89,20 +89,20 @@ const FactureForm = (props) => {
     <form className="create" onSubmit={handleSubmit}> 
       <h2>Ajouter une Facture</h2>
 
-      <label>Numéro de Facture:</label>
+      <label>N° Compte:</label>
       <input 
         type="text" 
-        onChange={(e) => setnofacture(e.target.value)} 
-        value={nofacture}
-        className={emptyFields.includes('nofacture') ? 'error' : ''}
+        onChange={(e) => setnocompte(e.target.value)} 
+        value={nocompte}
+        className={emptyFields.includes('nocompte') ? 'error' : ''}
       />
 
-     <label>Adresse:</label>
+     <label>Email:</label>
       <input 
         type="text" 
-        onChange={(e) => setadresse(e.target.value)} 
-        value={adresse}
-        className={emptyFields.includes('adresse') ? 'error' : ''}
+        onChange={(e) => setemail(e.target.value)} 
+        value={email}
+        className={emptyFields.includes('email') ? 'error' : ''}
       />
 
 
@@ -115,7 +115,7 @@ const FactureForm = (props) => {
       />
 
 
-      <label>Date:</label>
+      <label>Date de Paiement:</label>
       <input 
         type="date" 
         onChange={(e) => setdate(e.target.value)} 
@@ -124,6 +124,7 @@ const FactureForm = (props) => {
       />
 
       <button>Ajouter</button>
+      {/* <h3>{text}</h3> */}
       {error && <div className="error">{error}</div>}
     </form>
   )

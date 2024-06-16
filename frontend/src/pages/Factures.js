@@ -9,7 +9,7 @@ const Factures = () => {
 
   useEffect(() => {
     const fetchFactures = async () => {
-      const response = await fetch('/api/Factures')
+      const response = await fetch('/api/factures')
       const json = await response.json()
 
       if (response.ok) {
@@ -21,7 +21,7 @@ const Factures = () => {
   }, [dispatch])
 
   return (
-    <div className="home">
+    <div className="ajout">
       <div className="factures">
         <h2>Tout les Factures :</h2>
         {factures && factures.map(facture => (

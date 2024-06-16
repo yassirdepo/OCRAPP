@@ -1,6 +1,7 @@
 const Facture = require('../models/factureModel')
 const mongoose = require('mongoose')
 const multer = require('multer')
+const validator = require('validator')
 
 //get all
 const getFactures = async(req,res)=>{
@@ -51,15 +52,15 @@ const uploadFacture = async(req,res)=>{
 //create one
 
 const createFacture = async(req,res)=>{
-    const {nofacture,adresse,montant,date}=req.body
+    const {nocompte,email,montant,date}=req.body
 
     let emptyFields = []
 
-    if (!nofacture) {
-      emptyFields.push('nofacture')
+    if (!nocompte) {
+      emptyFields.push('nocompte')
     }
-    if (!adresse) {
-      emptyFields.push('adresse')
+    if (!email) {
+      emptyFields.push('email')
     }
     if (!montant) {
       emptyFields.push('montant')
@@ -71,9 +72,13 @@ const createFacture = async(req,res)=>{
       return res.status(400).json({ error: 'Veuillez Remplir tout les Champs!', emptyFields })
     }
 
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ error: 'Email non valid!', emptyFields })
+    }
+
     //add doc to db
     try {
-        const facture = await Facture.create({nofacture,adresse,montant,date})
+        const facture = await Facture.create({nocompte,email,montant,date})
         res.status(200).json(facture)
     } catch (error) {
         res.status(400).json({error:error.message})

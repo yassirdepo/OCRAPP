@@ -18,7 +18,7 @@ app.use((req,res,next)=>{
 })
 
 //routes
-app.use('/api',factureRoutes)
+app.use('/api/factures',factureRoutes)
 
 
 //connect to db

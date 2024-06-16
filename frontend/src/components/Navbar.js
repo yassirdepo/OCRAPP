@@ -4,14 +4,14 @@ const Navbar = () => {
     return (
         <header>
             <div className="container">
-                <Link to="/">
+                <Link to="/upload">
                     <h1>Factures App</h1>
                 </Link>
                 <nav>
                     <div>
                         <h3>
-                            <Link to="/">Upload Facture</Link>
-                            <Link to="/Factures">Tout les Factures</Link>
+                            <Link to="/">Tout les Factures</Link>
+                            <Link to="/upload">Upload Facture</Link>
                         </h3>
                     </div>
                 </nav>

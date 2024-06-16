@@ -1,7 +1,7 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
 //pages & components
-import Home from './pages/Home'
+import Upload from './pages/Upload'
 import Factures from './pages/Factures'
 import Navbar from './components/Navbar'
 
@@ -14,11 +14,11 @@ function App() {
       <div className="pages">
         <Routes>
           <Route
-            path="/"
-            element={<Home />}
+            path="/Upload"
+            element={<Upload />}
           />
           <Route
-            path="/Factures"
+            path="/"
             element={<Factures />}
           />
         </Routes>
